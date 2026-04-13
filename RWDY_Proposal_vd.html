@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RWDY — Scale Proposal 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"><style>
+:root {
+  --bg:       #F7F4EF;
+  --paper:    #FDFCFA;
+  --card:     #FFFFFF;
+  --ink:      #1A1614;
+  --ink2:     #5C544E;
+  --ink3:     #9A8F87;
+  --red:      #C0392B;
+  --red-d:    #9B2D21;
+  --red-l:    #FAEAE8;
+  --red-m:    #F4D0CC;
+  --gold:     #B8860B;
+  --gold-l:   #FDF8EC;
+  --green:    #1E7A4A;
+  --green-l:  #E8F5EE;
+  --blue:     #1A4A6E;
+  --blue-l:   #E8F0F8;
+  --border:   #E8E3DC;
+  --shadow:   0 2px 8px rgba(26,22,20,0.08);
+  --shadow-lg:0 8px 32px rgba(26,22,20,0.12);
+  --serif:    'Instrument Serif', 'Georgia', serif;
+  --display:  'Instrument Serif', 'Georgia', serif;
+  --sans:     'DM Sans', system-ui, sans-serif;
+  --mono:     'DM Mono', 'Courier New', monospace;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
+
+/* ── CONTAINER ───────────────────────────────── */
+.container{max-width:1080px;margin:0 auto;padding:0 32px;}
+section{padding:72px 0;}
+section+section{border-top:1px solid var(--border);}
+
+/* ── HERO ─────────────────────────────────────── */
+#hero{
+  background: var(--paper);
+  padding:0;
+  position:relative;
+  overflow:hidden;
+}
+.hero-inner{
+  display:grid;
+  grid-template-columns:1fr 380px;
+  gap:0;
+  min-height:420px;
+}
+.hero-left{
+  padding:60px 48px 48px 48px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  border-right:1px solid var(--border);
+}
+.hero-right{
+  padding:60px 40px 48px;
+  background:var(--red);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.wordmark{
+  font-family:'Instrument Serif', Georgia, serif;
+  font-style:italic;
+  font-size:96px;
+  font-weight:400;
+  letter-spacing:-2px;
+  line-height:0.9;
+  color:var(--ink);
+  margin-bottom:16px;
+}
+.hero-rule{width:48px;height:3px;background:var(--red);margin-bottom:20px;}
+.hero-title{font-size:18px;font-weight:500;color:var(--ink2);margin-bottom:6px;}
+.hero-desc{font-size:14px;color:var(--ink3);font-style:italic;margin-bottom:32px;}
+.hero-meta{display:flex;gap:12px;flex-wrap:wrap;}
+.meta-tag{
+  font-size:11px;font-weight:600;letter-spacing:0.5px;
+  padding:6px 12px;
+  border:1px solid var(--border);
+  border-radius:4px;
+  background:var(--bg);
+  color:var(--ink2);
+}
+.hero-stat-label{font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1px;margin-bottom:24px;}
+.hero-kpis{display:flex;flex-direction:column;gap:20px;}
+.hero-kpi{}
+.hero-kpi .kpi-val{font-family:'Instrument Serif', Georgia, serif;font-style:italic;font-size:46px;font-weight:400;color:#fff;line-height:1;letter-spacing:-1px;}
+.hero-kpi .kpi-label{font-size:12px;color:rgba(255,255,255,0.6);margin-top:2px;}
+.hero-kpi .kpi-sublabel{font-size:10px;color:rgba(255,255,255,0.4);margin-top:1px;}
+.hero-kpi-row{display:flex;gap:24px;}
+.hero-divider{width:100%;height:3px;background:var(--red);}
+
+/* ── STICKY NAV ──────────────────────────────── */
+#sticky-nav{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper);
+  border-bottom:1px solid var(--border);
+  transform:translateY(-100%);opacity:0;
+  transition:transform 0.3s,opacity 0.3s;
+}
+#sticky-nav.visible{transform:translateY(0);opacity:1;}
+#sticky-nav .container{display:flex;justify-content:space-between;align-items:center;height:52px;}
+.nav-wordmark{font-family:var(--sans);font-size:18px;font-weight:700;color:var(--red);letter-spacing:2px;text-transform:uppercase;}
+.nav-links{display:flex;gap:24px;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--ink3);font-size:13px;font-weight:500;padding-bottom:3px;border-bottom:2px solid transparent;transition:all 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--ink);border-bottom-color:var(--red);}
+
+/* ── SECTION HEADINGS ─────────────────────────── */
+.sec-eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;}
+.sec-heading{font-family:'Instrument Serif', Georgia, serif;font-style:italic;font-size:38px;font-weight:400;color:var(--ink);line-height:1.15;margin-bottom:8px;letter-spacing:-0.3px;}
+.sec-sub{font-size:14px;color:var(--ink3);font-style:italic;margin-bottom:36px;max-width:640px;}
+
+/* ── OPENING NOTE ─────────────────────────────── */
+.note-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:36px 40px;
+  position:relative;
+  box-shadow:var(--shadow);
+}
+.note-card::before{
+  content:'';
+  position:absolute;left:0;top:0;bottom:0;
+  width:4px;background:var(--red);border-radius:8px 0 0 8px;
+}
+.note-card p{font-size:15px;line-height:1.8;color:var(--ink);margin-bottom:14px;}
+.note-card p:last-child{margin-bottom:0;color:var(--ink2);}
+
+.alert-box{
+  margin-top:20px;
+  background:var(--gold-l);
+  border:1px solid #D4A017;
+  border-radius:8px;
+  padding:18px 24px;
+  display:flex;gap:14px;
+}
+.alert-icon{font-size:20px;flex-shrink:0;margin-top:1px;}
+.alert-content{}
+.alert-label{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+.alert-content p{font-size:13px;color:#6B5000;line-height:1.7;margin:0;}
+
+/* ── DATA CARDS ROW ──────────────────────────── */
+.kpi-strip{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:0;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  margin-bottom:36px;
+}
+.kpi-card{
+  padding:24px 20px;
+  border-right:1px solid var(--border);
+  text-align:center;
+}
+.kpi-card:last-child{border-right:none;}
+.kpi-num{font-family:'Instrument Serif', Georgia, serif;font-style:italic;font-size:38px;font-weight:400;line-height:1;margin-bottom:4px;letter-spacing:-1px;}
+.kpi-num.bad{color:var(--red);}
+.kpi-num.good{color:var(--green);}
+.kpi-num.warn{color:var(--gold);}
+.kpi-lbl{font-size:11px;color:var(--ink3);line-height:1.4;}
+.kpi-bench{font-size:10px;color:var(--ink3);font-style:italic;margin-top:3px;padding-top:3px;border-top:1px dashed var(--border);}
+
+/* ── TABLE ───────────────────────────────────── */
+.data-table-wrap{border-radius:8px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow);}
+.data-table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);}
+.data-table th{
+  text-align:left;padding:10px 16px;
+  background:#F2EDE6;
+  font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:0.8px;
+  color:var(--ink2);border-bottom:2px solid var(--border);
+}
+.data-table td{padding:11px 16px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.data-table tbody tr:last-child td{border-bottom:none;}
+.data-table tbody tr:hover td{background:#FAFAF8;}
+.badge{display:inline-block;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:700;background:var(--red);color:#fff;letter-spacing:0.3px;white-space:nowrap;}
+.badge.green{background:var(--green);}
+.badge.gold{background:var(--gold);}
+.tdval{font-weight:600;color:var(--ink);}
+.tdread{font-size:12px;color:var(--ink3);font-style:italic;}
+.sig-r{color:var(--red);font-weight:700;}
+.sig-g{color:var(--green);font-weight:700;}
+.sig-o{color:var(--gold);font-weight:700;}
+.src-note{display:block;font-size:10px;color:var(--ink3);font-style:italic;margin-top:2px;}
+
+/* ── LEAK CARDS ──────────────────────────────── */
+.leak-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  margin-bottom:12px;
+  box-shadow:var(--shadow);
+  transition:box-shadow 0.2s;
+}
+.leak-card:hover{box-shadow:var(--shadow-lg);}
+.leak-header{
+  display:flex;align-items:center;gap:16px;
+  padding:18px 24px;cursor:pointer;user-select:none;
+}
+.leak-badge{
+  width:64px;height:64px;border-radius:8px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.leak-badge .lb-num{font-family:var(--serif);font-size:24px;font-weight:700;color:#fff;line-height:1;}
+.leak-badge .lb-lbl{font-size:8px;font-weight:700;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.5px;}
+.leak-info{flex:1;min-width:0;}
+.leak-name{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+.leak-tagline{font-size:13px;color:var(--ink3);}
+.leak-pills{display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap;align-items:center;}
+.pill{font-size:11px;font-weight:600;padding:5px 11px;border-radius:20px;white-space:nowrap;}
+.pill-red{background:var(--red-l);color:var(--red);border:1px solid var(--red-m);}
+.pill-green{background:var(--green-l);color:var(--green);border:1px solid #B8DFC9;}
+.leak-chev{font-size:14px;color:var(--ink3);transition:transform 0.3s;flex-shrink:0;}
+.leak-card.open .leak-chev{transform:rotate(180deg);}
+.leak-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease;}
+.leak-card.open .leak-body{max-height:4000px;}
+.leak-inner{padding:0 24px 28px;border-top:1px solid var(--border);}
+
+.leak-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:20px;padding-top:16px;flex-wrap:wrap;}
+.leak-tab{
+  padding:8px 16px;font-size:12px;font-weight:600;
+  color:var(--ink3);cursor:pointer;
+  border-bottom:2px solid transparent;
+  background:none;border-top:none;border-left:none;border-right:none;
+  font-family:var(--sans);transition:all 0.2s;
+}
+.leak-tab:hover{color:var(--ink);}
+.leak-tab.active{color:var(--red);border-bottom-color:var(--red);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+.tab-panel h4{font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;margin:16px 0 8px;}
+.tab-panel h4:first-child{margin-top:0;}
+.tab-panel p{font-size:14px;line-height:1.8;color:var(--ink);margin-bottom:10px;}
+.tab-panel ul{font-size:14px;line-height:1.8;margin-bottom:10px;padding-left:20px;color:var(--ink);}
+.tab-panel li{margin-bottom:3px;}
+
+.stat-row{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0;}
+.stat-box{
+  flex:1;min-width:120px;
+  background:var(--bg);border:1px solid var(--border);border-radius:8px;
+  padding:16px;text-align:center;
+}
+.stat-num{font-family:'Instrument Serif', Georgia, serif;font-style:italic;font-size:34px;font-weight:400;line-height:1;margin-bottom:4px;letter-spacing:-1px;}
+.stat-num.r{color:var(--red);}
+.stat-num.g{color:var(--green);}
+.stat-num.o{color:var(--gold);}
+.stat-lbl{font-size:11px;color:var(--ink3);}
+
+.fix-box{
+  background:var(--green-l);border:1px solid #B8DFC9;
+  border-radius:8px;padding:16px 20px;margin-top:12px;
+}
+.fix-label{font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.fix-box p{font-size:13px;color:#0D4A2A;line-height:1.7;margin:0;}
+.fix-box strong{color:#0A3D21;}
+
+/* ── CHART CONTAINERS ─────────────────────────── */
+.charts-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px;}
+.chart-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:10px;padding:24px;
+  box-shadow:var(--shadow);
+}
+.chart-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.chart-sub{font-size:11px;color:var(--ink3);margin-bottom:16px;}
+canvas{display:block;width:100%!important;}
+
+/* Donut chart SVG */
+.donut-wrap{display:flex;align-items:center;gap:20px;}
+.donut-legend{flex:1;}
+.donut-leg-item{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:12px;}
+.donut-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
+
+/* Bar chart */
+.bar-chart{display:flex;flex-direction:column;gap:10px;}
+.bar-row{display:flex;align-items:center;gap:10px;}
+.bar-label{font-size:12px;color:var(--ink2);width:140px;flex-shrink:0;text-align:right;}
+.bar-track{flex:1;height:24px;background:var(--bg);border-radius:4px;overflow:hidden;position:relative;}
+.bar-fill{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:8px;transition:width 1s ease;}
+.bar-fill span{font-size:11px;font-weight:700;color:#fff;white-space:nowrap;}
+.bar-bench{position:absolute;top:0;bottom:0;width:2px;background:var(--green);opacity:0.6;}
+.bar-val{font-size:12px;font-weight:700;color:var(--ink2);width:48px;text-align:left;flex-shrink:0;}
+
+/* Funnel visual */
+.funnel{display:flex;flex-direction:column;align-items:center;gap:3px;}
+.funnel-step{
+  border-radius:4px;display:flex;align-items:center;justify-content:space-between;
+  padding:10px 16px;font-size:12px;font-weight:600;color:#fff;
+}
+.funnel-step span.fval{font-family:var(--mono);font-size:14px;}
+
+/* Revenue waterfall */
+.waterfall{display:flex;align-items:flex-end;gap:8px;height:180px;padding:0 8px;}
+.wf-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
+.wf-bar{width:100%;border-radius:4px 4px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:6px;}
+.wf-bar span{font-size:10px;font-weight:700;color:#fff;}
+.wf-label{font-size:10px;color:var(--ink3);text-align:center;line-height:1.3;}
+.wf-connector{position:absolute;bottom:0;right:-8px;width:8px;height:2px;background:var(--border);}
+
+/* ── IMMEDIATE FIXES ──────────────────────────── */
+.fix-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.fix-item{
+  background:var(--card);border:1px solid var(--border);border-radius:8px;
+  padding:18px 20px;box-shadow:var(--shadow);
+  display:flex;gap:12px;
+}
+.fix-num{
+  width:28px;height:28px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:#fff;background:var(--red);flex-shrink:0;
+}
+.fix-content{}
+.fix-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.fix-body{font-size:12px;color:var(--ink2);line-height:1.6;}
+.fix-tag{display:inline-block;font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;margin-top:6px;text-transform:uppercase;letter-spacing:0.5px;}
+.tag-q{background:var(--green-l);color:var(--green);border:1px solid #B8DFC9;}
+.tag-s{background:var(--blue-l);color:var(--blue);border:1px solid #B8CEDF;}
+
+/* ── TIMELINE ─────────────────────────────────── */
+.tl-outer{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.tl-track{min-width:800px;padding:8px 0;}
+.tl-acts{display:flex;margin-bottom:8px;gap:4px;}
+.tl-act{
+  flex:1;text-align:center;font-size:10px;font-weight:700;text-transform:uppercase;
+  letter-spacing:0.5px;color:var(--ink2);padding:5px 0;
+  background:var(--card);border:1px solid var(--border);border-radius:6px 6px 0 0;
+}
+.tl-act span{display:block;font-size:9px;font-weight:400;text-transform:none;color:var(--ink3);}
+.tl-bar{display:flex;height:44px;border-radius:6px;overflow:hidden;box-shadow:var(--shadow);}
+.tl-seg{
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:11px;font-weight:700;cursor:pointer;
+  transition:filter 0.2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 8px;
+}
+.tl-seg:hover{filter:brightness(1.1);}
+.tl-weeks{display:flex;margin-top:8px;}
+.tl-wk{text-align:center;font-size:10px;color:var(--ink3);line-height:1.3;}
+.tl-wk .wkdate{font-size:9px;opacity:0.6;}
+.tl-ms{position:relative;height:32px;margin-top:8px;}
+.ms{position:absolute;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;}
+.ms-diamond{width:8px;height:8px;background:var(--red);transform:rotate(45deg);border-radius:1px;}
+.ms-text{font-size:9px;font-weight:600;color:var(--ink3);white-space:nowrap;margin-top:5px;}
+
+.month-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px;}
+.month-card{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:var(--shadow);}
+.month-header{padding:12px 16px;display:flex;justify-content:space-between;align-items:center;}
+.month-header span{font-size:11px;font-weight:700;color:#fff;}
+.month-body{padding:16px;}
+.month-section{font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:0.8px;margin:12px 0 6px;}
+.month-section:first-child{margin-top:0;}
+.month-body ul{font-size:12px;color:var(--ink);padding-left:14px;line-height:1.7;}
+
+/* ── REVENUE BRIDGE ───────────────────────────── */
+.bridge-table-wrap{border-radius:8px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow);}
+.bridge-table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);}
+.bridge-table th{
+  text-align:left;padding:10px 16px;background:#F2EDE6;
+  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;
+  color:var(--ink2);border-bottom:2px solid var(--border);
+}
+.bridge-table td{padding:11px 16px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.bridge-table tbody tr:last-child td{border-bottom:none;}
+.bridge-table tbody tr:hover td{background:#FAFAF8;}
+.rec-num{font-weight:700;color:var(--green);font-family:var(--mono);}
+.cert-h{color:var(--green);font-weight:700;}
+.cert-m{color:var(--gold);font-weight:700;}
+
+.bridge-summary{
+  background:var(--card);border:1px solid var(--border);border-radius:8px;
+  overflow:hidden;margin-top:20px;box-shadow:var(--shadow);
+}
+.bridge-row{display:flex;align-items:center;padding:14px 20px;border-bottom:1px solid var(--border);}
+.bridge-row:last-child{border-bottom:none;}
+.bridge-lbl{flex:1;font-size:14px;}
+.bridge-val{font-family:'Instrument Serif', Georgia, serif;font-style:italic;font-size:26px;font-weight:400;letter-spacing:-0.5px;}
+.bridge-val.g{color:var(--green);}
+.bridge-val.s{color:var(--ink3);font-size:16px;font-family:var(--sans);}
+.bridge-row.hl{background:#E8F5EE;}
+.bridge-row.dk{background:var(--bg);}
+
+/* ── WATERFALL VISUAL ─────────────────────────── */
+.wf-visual{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:28px 32px;margin-bottom:20px;box-shadow:var(--shadow);
+}
+.wf-title{font-size:13px;font-weight:700;margin-bottom:4px;}
+.wf-sub{font-size:11px;color:var(--ink3);margin-bottom:24px;}
+.wf-chart{display:flex;align-items:flex-end;gap:6px;height:200px;position:relative;}
+.wf-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:0;position:relative;}
+.wf-spacer{flex:1;}
+.wf-block{
+  width:100%;border-radius:4px 4px 0 0;
+  display:flex;align-items:flex-start;justify-content:center;
+  padding-top:8px;min-height:20px;
+}
+.wf-block span{font-size:9px;font-weight:700;color:#fff;text-align:center;line-height:1.2;}
+.wf-col-lbl{font-size:9px;color:var(--ink3);text-align:center;margin-top:6px;line-height:1.3;max-width:70px;}
+.wf-baseline{position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--border);}
+
+/* ── CALCULATOR ───────────────────────────────── */
+.calc-section{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:28px 32px;margin-top:24px;box-shadow:var(--shadow);
+}
+.calc-title{font-size:15px;font-weight:700;margin-bottom:4px;}
+.calc-sub{font-size:12px;color:var(--ink3);margin-bottom:24px;}
+.calc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+.calc-card{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:16px;}
+.calc-card h4{font-size:10px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;}
+.calc-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);gap:8px;}
+.calc-row:last-child{border-bottom:none;}
+.calc-lbl{font-size:11px;color:var(--ink2);flex:1;}
+.calc-inp{
+  width:88px;background:var(--card);border:1px solid var(--border);border-radius:4px;
+  padding:4px 8px;color:var(--ink);font-size:12px;font-weight:600;font-family:var(--mono);
+  text-align:right;
+}
+.calc-inp:focus{outline:none;border-color:var(--red);}
+.calc-result{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+  background:var(--red);border-radius:8px;padding:20px 24px;
+}
+.calc-r-item{}
+.calc-r-label{font-size:11px;color:rgba(255,255,255,0.6);margin-bottom:4px;}
+.calc-r-val{font-family:'Instrument Serif', Georgia, serif;font-style:italic;font-size:34px;font-weight:400;color:#fff;letter-spacing:-1px;}
+.calc-note{font-size:11px;color:var(--ink3);font-style:italic;margin-top:10px;}
+
+/* ── FOOTER ───────────────────────────────────── */
+#footer{background:var(--ink);padding:56px 0 40px;}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:48px;}
+.footer-col h3{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--red);margin-bottom:16px;}
+.footer-col ul{list-style:none;padding:0;}
+.footer-col li{font-size:12px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.6);line-height:1.5;}
+.footer-col li:last-child{border:none;}
+.footer-col .src{display:block;font-size:10px;color:rgba(255,255,255,0.3);font-style:italic;margin-top:1px;}
+.closing{text-align:center;padding-top:36px;border-top:1px solid rgba(255,255,255,0.1);}
+.closing-h{font-family:'Instrument Serif', Georgia, serif;font-style:italic;font-size:32px;font-weight:400;color:#fff;margin-bottom:8px;letter-spacing:-0.3px;}
+.closing-s{font-size:14px;color:rgba(255,255,255,0.5);margin-bottom:16px;}
+.closing-c{font-size:11px;color:rgba(255,255,255,0.25);font-style:italic;}
+
+.tooltip-el{
+  position:fixed;z-index:999;
+  background:var(--ink);color:var(--bg);
+  font-size:12px;line-height:1.5;padding:10px 14px;
+  border-radius:6px;max-width:260px;
+  pointer-events:none;opacity:0;transition:opacity 0.15s;
+  white-space:pre-line;box-shadow:var(--shadow-lg);
+}
+.tooltip-el.vis{opacity:1;}
+
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  .charts-row{grid-template-columns:1fr;}
+  .fix-grid{grid-template-columns:1fr;}
+  .calc-grid{grid-template-columns:1fr 1fr;}
+  .month-cards{grid-template-columns:1fr 1fr;}
+  .kpi-strip{grid-template-columns:repeat(3,1fr);}
+  .footer-grid{grid-template-columns:1fr;}
+  .wordmark{font-size:60px;}
+}
+@media(max-width:600px){
+  .calc-grid{grid-template-columns:1fr;}
+  .calc-result{grid-template-columns:1fr;}
+  .kpi-strip{grid-template-columns:1fr 1fr;}
+}
+
+/* ── ENTRY ANIMATIONS ────────────────────────── */
+.fade-up{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.fade-up.in{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div>
+          <div class="wordmark">RWDY</div>
+          <div class="hero-rule"></div>
+          <div class="hero-title">Scale Proposal — ThinkPivot.ai × The Funnel Story</div>
+          <div class="hero-desc">Findings · Leaks · Fixes · Revenue Impact · 3-Month Plan</div>
+          <div class="hero-meta">
+            <span class="meta-tag">April 2026</span>
+            <span class="meta-tag">Rajeev Kumar Pandey</span>
+            <span class="meta-tag">Internal Draft · Pre-VD Meeting</span>
+          </div>
+        </div>
+        <div style="margin-top:32px;font-size:12px;color:var(--ink3);font-style:italic;">
+          Not for external circulation. Prepared on the basis of data shared by the RWDY team.
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-stat-label">Key Numbers</div>
+        <div class="hero-kpis">
+          <div class="hero-kpi">
+            <div class="kpi-val">₹20.5L</div>
+            <div class="kpi-label">Current monthly revenue</div>
+            <div class="kpi-sublabel">₹1.23Cr ÷ 6 months (to confirm)</div>
+          </div>
+          <div class="hero-kpi-row">
+            <div class="hero-kpi">
+              <div class="kpi-val">25%</div>
+              <div class="kpi-label">RTO Rate</div>
+              <div class="kpi-sublabel">Norm: 10–12%</div>
+            </div>
+            <div class="hero-kpi">
+              <div class="kpi-val">12%</div>
+              <div class="kpi-label">Repeat Rate</div>
+              <div class="kpi-sublabel">Norm: 25–40%</div>
+            </div>
+          </div>
+          <div class="hero-kpi">
+            <div class="kpi-val" style="font-size:32px;">₹27.5L</div>
+            <div class="kpi-label">Recoverable/month — no new ad spend</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</header>
+
+<!-- STICKY NAV -->
+<nav id="sticky-nav">
+  <div class="container">
+    <div class="nav-wordmark">RWDY</div>
+    <ul class="nav-links">
+      <li><a href="#snapshot">Snapshot</a></li>
+      <li><a href="#benchmarks">Benchmarks</a></li>
+      <li><a href="#leaks">Leaks</a></li>
+      <li><a href="#fixes">Fixes</a></li>
+      <li><a href="#timeline">Timeline</a></li>
+      <li><a href="#bridge">Revenue Bridge</a></li>
+      <li><a href="#yearplan">Year Plan</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- OPENING NOTE -->
+<section id="note" style="padding:48px 0 40px;">
+  <div class="container">
+    <div class="note-card fade-up">
+      <p>We went through the data shared by the team, ran a live audit of the website, tested brand search across Google, ChatGPT, and Perplexity, and reviewed the app store listings. This document is the output — structured as: here's where you are, here's what the numbers mean, here's what's leaking, how to fix it, and what that gets you to.</p>
+      <p>The short version: RWDY has real product-market fit. Strong AOV, above-average prepaid ratio, 3% return rate, and a founder with 22M+ followers. None of that is the constraint. What's constraining growth is a cluster of execution failures — most fixable in weeks, without additional ad spend. The April–July window is the right time to fix before the October season opens.</p>
+    </div>
+    <div class="alert-box fade-up" style="transition-delay:0.1s;">
+      <div class="alert-icon">⚠</div>
+      <div class="alert-content">
+        <div class="alert-label">Revenue baseline — confirm before VD meeting</div>
+        <p>₹1.23Cr in the sheet appears to be the 6-month total, not monthly. At ₹2,130 AOV and 800–1,500 orders/month, monthly average is ~₹20.5L. If it's monthly, you're nearly at the ₹1Cr target — which contradicts the order data. This single clarification changes everything about the plan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SNAPSHOT -->
+<section id="snapshot">
+  <div class="container">
+    <div class="sec-eyebrow">Section 01</div>
+    <div class="sec-heading">Where RWDY is today</div>
+    <p class="sec-sub">Exactly what the team shared — with our read alongside each number.</p>
+
+    <!-- KPI Strip -->
+    <div class="kpi-strip fade-up">
+      <div class="kpi-card">
+        <div class="kpi-num bad">25%</div>
+        <div class="kpi-lbl">RTO Rate</div>
+        <div class="kpi-bench">Norm: 10–12%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num bad">1.3×</div>
+        <div class="kpi-lbl">Blended ROAS</div>
+        <div class="kpi-bench">Norm: 3.5–5×</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num warn">20%</div>
+        <div class="kpi-lbl">7-Day Sell-Through</div>
+        <div class="kpi-bench">Norm: 50–70%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num good">₹2,130</div>
+        <div class="kpi-lbl">D2C AOV</div>
+        <div class="kpi-bench">Norm: ₹1,200–₹1,800</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num good">57%</div>
+        <div class="kpi-lbl">Prepaid Share</div>
+        <div class="kpi-bench">Norm: 30–40%</div>
+      </div>
+    </div>
+
+    <!-- Charts row -->
+    <div class="charts-row fade-up" style="transition-delay:0.1s;">
+
+      <!-- Donut: Revenue by channel -->
+      <div class="chart-card">
+        <div class="chart-title">Revenue by Geography</div>
+        <div class="chart-sub">South India dominates at 80% — a ceiling, not a strength</div>
+        <div class="donut-wrap">
+          <svg viewBox="0 0 120 120" width="140" height="140" style="flex-shrink:0;">
+            <!-- TG 30% -->
+            <circle cx="60" cy="60" r="45" fill="none" stroke="#C0392B" stroke-width="22"
+              stroke-dasharray="84.8 197" stroke-dashoffset="0" transform="rotate(-90 60 60)"/>
+            <!-- AP 23% -->
+            <circle cx="60" cy="60" r="45" fill="none" stroke="#D4564A" stroke-width="22"
+              stroke-dasharray="65.0 197" stroke-dashoffset="-84.8" transform="rotate(-90 60 60)"/>
+            <!-- KA 15% -->
+            <circle cx="60" cy="60" r="45" fill="none" stroke="#E07060" stroke-width="22"
+              stroke-dasharray="42.4 197" stroke-dashoffset="-149.8" transform="rotate(-90 60 60)"/>
+            <!-- TN 6% -->
+            <circle cx="60" cy="60" r="45" fill="none" stroke="#E89A94" stroke-width="22"
+              stroke-dasharray="16.9 197" stroke-dashoffset="-192.2" transform="rotate(-90 60 60)"/>
+            <!-- Rest 26% -->
+            <circle cx="60" cy="60" r="45" fill="none" stroke="#E5DFD8" stroke-width="22"
+              stroke-dasharray="73.6 197" stroke-dashoffset="-209.1" transform="rotate(-90 60 60)"/>
+            <text x="60" y="56" text-anchor="middle" fill="#1A1614" font-size="10" font-weight="700" font-family="Georgia">South</text>
+            <text x="60" y="68" text-anchor="middle" fill="#C0392B" font-size="12" font-weight="700" font-family="Georgia">80%</text>
+          </svg>
+          <div class="donut-legend">
+            <div class="donut-leg-item"><div class="donut-dot" style="background:#C0392B"></div>Telangana 30%</div>
+            <div class="donut-leg-item"><div class="donut-dot" style="background:#D4564A"></div>Andhra Pradesh 23%</div>
+            <div class="donut-leg-item"><div class="donut-dot" style="background:#E07060"></div>Karnataka 15%</div>
+            <div class="donut-leg-item"><div class="donut-dot" style="background:#E89A94"></div>Tamil Nadu 6%</div>
+            <div class="donut-leg-item"><div class="donut-dot" style="background:#E5DFD8"></div>Rest of India 26%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bar chart: product mix -->
+      <div class="chart-card">
+        <div class="chart-title">Revenue by Category</div>
+        <div class="chart-sub">Tees at 70% — volume driver and highest-return category</div>
+        <div class="bar-chart">
+          <div class="bar-row">
+            <div class="bar-label">Tees</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width:70%;background:#C0392B;">
+                <span>70%</span>
+              </div>
+            </div>
+            <div class="bar-val" style="color:var(--red);font-weight:700;">₹14.4L</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Hoodies + Sweatshirts</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width:20%;background:#D4564A;">
+                <span>20%</span>
+              </div>
+            </div>
+            <div class="bar-val">₹4.1L</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Bottoms + Shirts</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width:10%;background:#E5DFD8;">
+                <span>10%</span>
+              </div>
+            </div>
+            <div class="bar-val">₹2.1L</div>
+          </div>
+          <div class="bar-row" style="margin-top:8px;">
+            <div class="bar-label" style="color:var(--ink3);font-size:11px;">Customer split</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width:86.5%;background:#C0392B;border-radius:4px;">
+                <span>New 86.5%</span>
+              </div>
+            </div>
+            <div class="bar-val" style="color:var(--red);">86.5%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label" style="color:var(--ink3);font-size:11px;">Returning</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width:13.5%;background:#1E7A4A;">
+                <span style="font-size:10px;">13.5%</span>
+              </div>
+            </div>
+            <div class="bar-val" style="color:var(--green);">13.5%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Snapshot table -->
+    <div class="data-table-wrap fade-up" style="transition-delay:0.2s;">
+      <table class="data-table">
+        <thead>
+          <tr><th style="width:60px;"></th><th>Metric</th><th>RWDY Number</th><th>Our Read</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="badge">REV</span></td><td>6-month total revenue</td><td class="tdval">₹1.23 Cr</td><td class="tdread">Monthly avg = ₹20.5L. Needs confirming before VD meeting.</td></tr>
+          <tr><td><span class="badge">REV</span></td><td>Active sales channels</td><td class="tdval">Website + Broadway Hyderabad only</td><td class="tdread">No Myntra, no Amazon, no marketplace. Single pipe.</td></tr>
+          <tr><td><span class="badge">REV</span></td><td>D2C Average Order Value</td><td class="tdval">₹2,130</td><td class="tdread">Above category average. Real upsell runway exists.</td></tr>
+          <tr><td><span class="badge">WEB</span></td><td>Monthly website sessions</td><td class="tdval">16,000</td><td class="tdread">Very low for a 279K Instagram + 1M app brand.</td></tr>
+          <tr><td><span class="badge">WEB</span></td><td>Conversion rate + COD split</td><td class="tdval">3% · 43% COD / 57% Prepaid</td><td class="tdread">CR is healthy. Prepaid ratio is excellent — above-average trust signal.</td></tr>
+          <tr><td><span class="badge">CUS</span></td><td>New vs Returning (revenue split)</td><td class="tdval sig-r">86.5% New / 13.5% Returning</td><td class="tdread">Critical. Healthy brands run 40–60% returning. Every month starts from zero.</td></tr>
+          <tr><td><span class="badge">CUS</span></td><td>Repeat rate · Avg frequency · CAC</td><td class="tdval">12% · 1.17× · ₹600</td><td class="tdread">88% never return. LTV:CAC of 4.15× looks ok but never compounds.</td></tr>
+          <tr><td><span class="badge">OPS</span></td><td>Return rate + RTO rate</td><td class="tdval">3% returns · <span class="sig-r">25% RTO</span></td><td class="tdread">3% return = excellent product. 25% RTO = broken communication layer.</td></tr>
+          <tr><td><span class="badge">MKT</span></td><td>Meta spend · ROAS</td><td class="tdval">₹4.88L/month · <span class="sig-r">1.99× Meta / 1.3× Blended</span></td><td class="tdread">Contradictory. Meta alone can't generate more than the total. Pixel is broken.</td></tr>
+          <tr><td><span class="badge">MKT</span></td><td>Google Ads</td><td class="tdval sig-r">None</td><td class="tdread">Brand search unprotected. 5,000–8,000 branded searches/month going uncaptured.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- BENCHMARKS -->
+<section id="benchmarks">
+  <div class="container">
+    <div class="sec-eyebrow">Section 02</div>
+    <div class="sec-heading">What the numbers are actually saying</div>
+    <p class="sec-sub">Benchmarked against Indian D2C fashion norms. Each metric compared to industry standard with source.</p>
+
+    <!-- Bar chart comparison -->
+    <div class="chart-card fade-up" style="margin-bottom:20px;">
+      <div class="chart-title">RWDY vs Industry Benchmark — Key Metrics</div>
+      <div class="chart-sub">Red = RWDY · Green dashed line = Industry benchmark</div>
+      <div class="bar-chart" style="gap:14px;">
+        <div class="bar-row">
+          <div class="bar-label">RTO Rate</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:83%;background:#C0392B;"><span>25% — RWDY</span></div>
+            <div class="bar-bench" style="left:37%;"></div>
+          </div>
+          <div class="bar-val sig-r">2.3×</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Repeat Rate</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:30%;background:#C0392B;"><span>12%</span></div>
+            <div class="bar-bench" style="left:82%;"></div>
+          </div>
+          <div class="bar-val sig-r">0.4×</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Sell-Through 7d</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:33%;background:#D35400;"><span>20%</span></div>
+            <div class="bar-bench" style="left:83%;"></div>
+          </div>
+          <div class="bar-val sig-o">0.3×</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Meta ROAS</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:50%;background:#D35400;"><span>1.99×</span></div>
+            <div class="bar-bench" style="left:87%;"></div>
+          </div>
+          <div class="bar-val sig-o">0.6×</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Prepaid %</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:57%;background:#1E7A4A;"><span>57% prepaid ✓</span></div>
+            <div class="bar-bench" style="left:40%;"></div>
+          </div>
+          <div class="bar-val sig-g">1.4×</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">D2C AOV</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:75%;background:#1E7A4A;"><span>₹2,130 ✓</span></div>
+            <div class="bar-bench" style="left:52%;"></div>
+          </div>
+          <div class="bar-val sig-g">1.4×</div>
+        </div>
+      </div>
+      <div style="font-size:11px;color:var(--ink3);margin-top:12px;font-style:italic;">Multiplier = RWDY ÷ Benchmark midpoint. Green line marks benchmark. Sources: Unicommerce 2024, AppsFlyer 2024, Razorpay 2024, Baymard 2024.</div>
+    </div>
+
+    <div class="data-table-wrap fade-up" style="transition-delay:0.1s;">
+      <table class="data-table">
+        <thead>
+          <tr><th>Metric</th><th>RWDY</th><th>Benchmark + Source</th><th>Status</th><th>What it means</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>RTO Rate</strong></td><td class="sig-r">25%</td><td>10–12%<span class="src-note">Unicommerce E-commerce Index, 2024</span></td><td class="sig-r">Critical</td><td>1 in 4 orders never delivered. Costs money going and coming back.</td></tr>
+          <tr><td><strong>Blended ROAS</strong></td><td class="sig-r">1.3×</td><td>3.5–5×<span class="src-note">AppsFlyer State of eCommerce India, 2024</span></td><td class="sig-r">Critical</td><td>Lower than Meta's own 1.99×. Mathematically impossible — Pixel is broken.</td></tr>
+          <tr><td><strong>Repeat Purchase Rate</strong></td><td class="sig-r">12%</td><td>25–40%<span class="src-note">AppsFlyer State of eCommerce India, 2024</span></td><td class="sig-r">Critical</td><td>88% never return. Every month starts acquisition from scratch.</td></tr>
+          <tr><td><strong>7-Day Sell-Through</strong></td><td class="sig-o">20%</td><td>50–70%<span class="src-note">Business of Fashion DTC Drops, 2023</span></td><td class="sig-o">Weak</td><td>No pre-launch system. Drops go live with no hype runway.</td></tr>
+          <tr><td><strong>Cart Abandonment</strong></td><td class="sig-o">27%</td><td>68–70%<span class="src-note">Baymard Institute, 2024</span></td><td class="sig-o">Suspect</td><td>27% not credible. Likely measured on logged-in sessions only.</td></tr>
+          <tr><td><strong>COD Split</strong></td><td class="sig-g">57% Prepaid</td><td>30–40% Prepaid<span class="src-note">Razorpay Payment Report, 2024</span></td><td class="sig-g">Strong</td><td>Significantly above norm. Real brand trust signal.</td></tr>
+          <tr><td><strong>D2C AOV</strong></td><td class="sig-g">₹2,130</td><td>₹1,200–₹1,800<span class="src-note">Unicommerce / Statista India, 2024</span></td><td class="sig-g">Strong</td><td>Customers spending well. Upsell runway exists.</td></tr>
+          <tr><td><strong>Return Rate</strong></td><td class="sig-g">3%</td><td>8–15%<span class="src-note">Unicommerce E-commerce Index, 2024</span></td><td class="sig-g">Excellent</td><td>Product quality confirmed. RTO is logistics, not product.</td></tr>
+          <tr><td><strong>Metro vs Tier 2 RTO</strong></td><td class="sig-r">Metro 20% / T2 5%</td><td>Metro typically &lt; Tier 2<span class="src-note">Shiprocket D2C Whitepaper, 2024</span></td><td class="sig-r">Inverted</td><td>Metro impulsive COD buyers + zero post-order follow-up.</td></tr>
+          <tr><td><strong>Brand in AI Search</strong></td><td class="sig-o">Weak</td><td>Brand dominates own SERP<span class="src-note">Google Search Quality Guidelines, 2024</span></td><td class="sig-o">Gap</td><td>Vijay's name not on the website. ChatGPT can't surface RWDY reliably.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alert-box fade-up" style="margin-top:20px;transition-delay:0.2s;">
+      <div class="alert-icon">⚠</div>
+      <div class="alert-content">
+        <div class="alert-label">ROAS contradiction</div>
+        <p>Meta ROAS 1.99× on ₹4.88L spend implies Meta generated ₹9.71L. But blended ROAS 1.3× on the same spend implies total revenue of only ₹6.35L. One number cannot be bigger than the other. Fixing Pixel attribution typically reveals 30–50% more conversions — without changing a single rupee of spend.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAKS -->
+<section id="leaks">
+  <div class="container">
+    <div class="sec-eyebrow">Section 03</div>
+    <div class="sec-heading">The leaks</div>
+    <p class="sec-sub">Six leaks. All fixable. None require additional ad spend. This is money sitting on the floor.</p>
+
+    <!-- Leak funnel visual -->
+    <div class="chart-card fade-up" style="margin-bottom:24px;">
+      <div class="chart-title">The leaky funnel — monthly revenue lost per leak</div>
+      <div class="chart-sub">Total leakage: ₹6.6L (RTO) + ₹3.8L (Retention) + ₹13.4L (Google) + ₹4.2L (Drops) + ₹1.9L (AOV) + ₹0.4L (Size) = ₹30.3L cost · ₹27.5L recoverable</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:flex-end;">
+        <div style="text-align:center;flex:1;min-width:80px;">
+          <div style="background:#C0392B;border-radius:6px 6px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:10px;height:130px;">
+            <span style="font-size:11px;font-weight:700;color:#fff;">₹6.6L</span>
+          </div>
+          <div style="font-size:10px;color:var(--ink3);margin-top:6px;line-height:1.4;">RTO<br>25%→11%</div>
+        </div>
+        <div style="text-align:center;flex:1;min-width:80px;">
+          <div style="background:#D4564A;border-radius:6px 6px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:10px;height:76px;">
+            <span style="font-size:11px;font-weight:700;color:#fff;">₹3.8L</span>
+          </div>
+          <div style="font-size:10px;color:var(--ink3);margin-top:6px;line-height:1.4;">Retention<br>12%→30%</div>
+        </div>
+        <div style="text-align:center;flex:2;min-width:100px;">
+          <div style="background:#9B2D21;border-radius:6px 6px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:10px;height:196px;border:2px dashed rgba(255,255,255,0.3);">
+            <span style="font-size:11px;font-weight:700;color:#fff;">₹13.4L net</span>
+          </div>
+          <div style="font-size:10px;color:var(--ink3);margin-top:6px;line-height:1.4;">Google Ads<br>Brand Search</div>
+        </div>
+        <div style="text-align:center;flex:1;min-width:80px;">
+          <div style="background:#D35400;border-radius:6px 6px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:10px;height:84px;">
+            <span style="font-size:11px;font-weight:700;color:#fff;">₹4.2L</span>
+          </div>
+          <div style="font-size:10px;color:var(--ink3);margin-top:6px;line-height:1.4;">Drop Sell-<br>Through</div>
+        </div>
+        <div style="text-align:center;flex:1;min-width:70px;">
+          <div style="background:#E67E22;border-radius:6px 6px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:10px;height:38px;">
+            <span style="font-size:10px;font-weight:700;color:#fff;">₹1.9L</span>
+          </div>
+          <div style="font-size:10px;color:var(--ink3);margin-top:6px;line-height:1.4;">AOV<br>Cross-sell</div>
+        </div>
+        <div style="text-align:center;flex:1;min-width:60px;">
+          <div style="background:#E5DFD8;border-radius:6px 6px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:6px;height:16px;">
+            <span style="font-size:9px;font-weight:700;color:#666;">₹0.4L</span>
+          </div>
+          <div style="font-size:10px;color:var(--ink3);margin-top:6px;line-height:1.4;">Size<br>Guide</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEAK 01 -->
+    <div class="leak-card fade-up">
+      <div class="leak-header" onclick="this.closest('.leak-card').classList.toggle('open')">
+        <div class="leak-badge" style="background:linear-gradient(135deg,#C0392B,#9B2D21);">
+          <div class="lb-num">01</div><div class="lb-lbl">Leak</div>
+        </div>
+        <div class="leak-info">
+          <div class="leak-name">RTO — 25% of orders going out and coming back</div>
+          <div class="leak-tagline">Every 4th order never gets delivered. Metro RTO at 20% vs Tier 2 at just 5% — it's a communication problem, not logistics.</div>
+        </div>
+        <div class="leak-pills">
+          <span class="pill pill-red">₹6.6L/month cost</span>
+          <span class="pill pill-green">₹3.7L recoverable</span>
+        </div>
+        <span class="leak-chev">&#9662;</span>
+      </div>
+      <div class="leak-body"><div class="leak-inner">
+        <div class="leak-tabs">
+          <button class="leak-tab active" onclick="lt(this,'lc1','lc1-what')">What's happening</button>
+          <button class="leak-tab" onclick="lt(this,'lc1','lc1-why')">Why</button>
+          <button class="leak-tab" onclick="lt(this,'lc1','lc1-econ')">Unit Economics</button>
+          <button class="leak-tab" onclick="lt(this,'lc1','lc1-fix')">The Fix</button>
+        </div>
+        <div class="tab-panel active" id="lc1-what">
+          <h4>What's happening</h4>
+          <p>288 orders every month leave the warehouse, travel to the customer, fail to deliver, and return. The customer never gets the product. RWDY pays shipping twice and earns nothing.</p>
+          <div class="stat-row">
+            <div class="stat-box"><div class="stat-num r">288</div><div class="stat-lbl">Failed orders/month</div></div>
+            <div class="stat-box"><div class="stat-num r">25%</div><div class="stat-lbl">RWDY RTO rate</div></div>
+            <div class="stat-box"><div class="stat-num">11%</div><div class="stat-lbl">Industry norm</div></div>
+            <div class="stat-box"><div class="stat-num r">Metro 20%</div><div class="stat-lbl">vs Tier 2 just 5%</div></div>
+          </div>
+        </div>
+        <div class="tab-panel" id="lc1-why">
+          <h4>Why this is happening</h4>
+          <p>Rohit orders a ₹2,130 RWDY hoodie at 11pm on COD after seeing Vijay's Instagram story. Wednesday the delivery guy calls — Rohit doesn't recognise the number, misses it. Thursday: second attempt, Rohit is at work. Friday: package returns to the warehouse.</p>
+          <ul>
+            <li>Impulsive COD orders placed late at night — no follow-up confirmation</li>
+            <li>Zero post-order communication — customer forgets the order exists</li>
+            <li>No tracking updates — customer doesn't know when to expect delivery</li>
+            <li>No pre-delivery heads-up message before arrival</li>
+          </ul>
+        </div>
+        <div class="tab-panel" id="lc1-econ">
+          <h4>Unit economics of this leak</h4>
+          <ul>
+            <li>Forward shipping per order: ₹60</li>
+            <li>Return shipping per order: ₹80</li>
+            <li>Repackaging / restocking: ₹20</li>
+            <li>Blocked revenue (order value): ₹2,130</li>
+            <li><strong>Total cost per RTO order: ₹2,290</strong></li>
+          </ul>
+          <p>At 288 RTO orders/month: <strong>₹6.6L in total monthly leakage</strong>. Fixing to 11% recovers 161 orders. Revenue recovered: ₹3.43L. Logistics saved: ₹0.26L. <strong>Total recovery: ₹3.7L/month.</strong></p>
+          <p style="color:var(--ink3);font-size:13px;">Why 161 and not 288? Some RTO is irreducible — wrong addresses, genuine courier failure. 11% is the realistic floor for a well-run D2C brand. The 161 orders are the gap between current and benchmark.</p>
+        </div>
+        <div class="tab-panel" id="lc1-fix">
+          <h4>The fix — zero new ad spend</h4>
+          <div class="fix-box">
+            <div class="fix-label">✓ Implementation — 2–3 days, WhatsApp API tool</div>
+            <p><strong>1.</strong> WhatsApp COD confirmation within 30 mins of order — address verification, non-reply triggers pre-dispatch call.<br><strong>2.</strong> Automated tracking update at every courier status change.<br><strong>3.</strong> Pre-delivery address confirmation 24 hours before arrival.<br><br><strong>Tool:</strong> Interakt or Wati — ₹5,000–8,000/month flat. No dev work required.</p>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- LEAK 02 -->
+    <div class="leak-card fade-up" style="transition-delay:0.05s;">
+      <div class="leak-header" onclick="this.closest('.leak-card').classList.toggle('open')">
+        <div class="leak-badge" style="background:linear-gradient(135deg,#A93226,#7B241C);">
+          <div class="lb-num">02</div><div class="lb-lbl">Leak</div>
+        </div>
+        <div class="leak-info">
+          <div class="leak-name">Retention — 88% of customers never return</div>
+          <div class="leak-tagline">CAC already paid. Product loved. Zero post-purchase communication. 179 free orders per month being ignored.</div>
+        </div>
+        <div class="leak-pills">
+          <span class="pill pill-red">179 orders/month lost</span>
+          <span class="pill pill-green">₹3.8L recoverable</span>
+        </div>
+        <span class="leak-chev">&#9662;</span>
+      </div>
+      <div class="leak-body"><div class="leak-inner">
+        <div class="leak-tabs">
+          <button class="leak-tab active" onclick="lt(this,'lc2','lc2-what')">What's happening</button>
+          <button class="leak-tab" onclick="lt(this,'lc2','lc2-econ')">Unit Economics</button>
+          <button class="leak-tab" onclick="lt(this,'lc2','lc2-fix')">The Fix</button>
+        </div>
+        <div class="tab-panel active" id="lc2-what">
+          <div class="stat-row">
+            <div class="stat-box"><div class="stat-num r">12%</div><div class="stat-lbl">Current repeat rate</div></div>
+            <div class="stat-box"><div class="stat-num">30%</div><div class="stat-lbl">Benchmark (AppsFlyer 2024)</div></div>
+            <div class="stat-box"><div class="stat-num r">119</div><div class="stat-lbl">Returning orders now</div></div>
+            <div class="stat-box"><div class="stat-num g">298</div><div class="stat-lbl">Should be at 30%</div></div>
+          </div>
+          <p>Priya buys a RWDY tee in November. Loves it. December — she'd buy a hoodie. But RWDY never sends a single message. No WhatsApp, no email, no drop notification. She forgets. Buys something else. She's gone. This happens to 88 out of every 100 customers RWDY acquires.</p>
+        </div>
+        <div class="tab-panel" id="lc2-econ">
+          <ul>
+            <li>New customers acquired monthly: ~995</li>
+            <li>Returning at 12%: 119 orders · Returning at 30%: 298 orders</li>
+            <li>Gap: <strong>179 orders/month</strong> · Revenue: <strong>₹3.81L/month</strong></li>
+            <li>CAC on these orders: <strong>₹0</strong> — already paid</li>
+            <li>Cost to activate (WhatsApp): ~₹537/month</li>
+            <li><strong>Net recoverable: ₹3.8L/month</strong></li>
+          </ul>
+          <p>These are the cheapest orders in the business. Acquisition cost already sunk. All that's needed is a reason to come back.</p>
+        </div>
+        <div class="tab-panel" id="lc2-fix">
+          <div class="fix-box">
+            <div class="fix-label">✓ Three WhatsApp flows — existing 1M+ app base</div>
+            <p><strong>Flow 1:</strong> Post-purchase cross-sell (Day 3, Day 7, Day 21).<br><strong>Flow 2:</strong> Drop announcement — 48hrs before + day of launch.<br><strong>Flow 3:</strong> Win-back — 90-day lapsed buyers.<br><br>Cost: ₹537/month in WhatsApp messages. Recovery: ₹3.8L/month.</p>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- LEAK 03 -->
+    <div class="leak-card fade-up" style="transition-delay:0.1s;">
+      <div class="leak-header" onclick="this.closest('.leak-card').classList.toggle('open')">
+        <div class="leak-badge" style="background:linear-gradient(135deg,#922B21,#641E16);">
+          <div class="lb-num">03</div><div class="lb-lbl">Leak</div>
+        </div>
+        <div class="leak-info">
+          <div class="leak-name">Google Ads — brand search completely unprotected</div>
+          <div class="leak-tagline">6,500 people/month search for RWDY on Google. None are being captured. Zero presence.</div>
+        </div>
+        <div class="leak-pills">
+          <span class="pill pill-red">₹40K spend needed</span>
+          <span class="pill pill-green">₹13.4L net recoverable</span>
+        </div>
+        <span class="leak-chev">&#9662;</span>
+      </div>
+      <div class="leak-body"><div class="leak-inner">
+        <div class="leak-tabs">
+          <button class="leak-tab active" onclick="lt(this,'lc3','lc3-what')">What's happening</button>
+          <button class="leak-tab" onclick="lt(this,'lc3','lc3-econ')">Unit Economics</button>
+          <button class="leak-tab" onclick="lt(this,'lc3','lc3-fix')">The Fix</button>
+        </div>
+        <div class="tab-panel active" id="lc3-what">
+          <div class="stat-row">
+            <div class="stat-box"><div class="stat-num r">0</div><div class="stat-lbl">Google campaigns running</div></div>
+            <div class="stat-box"><div class="stat-num">6,500</div><div class="stat-lbl">Est. branded searches/month</div></div>
+            <div class="stat-box"><div class="stat-num g">10%</div><div class="stat-lbl">Brand search CR (vs 3% cold)</div></div>
+            <div class="stat-box"><div class="stat-num g">34×</div><div class="stat-lbl">Expected ROAS</div></div>
+          </div>
+          <p>Searching "RWDY" surfaces an American oil company, a US streetwear brand, and a Tennessee label — before Vijay's brand. Vijay Deverakonda's name is not on the website, so Google doesn't even know who RWDY is.</p>
+        </div>
+        <div class="tab-panel" id="lc3-econ">
+          <ul>
+            <li>Branded searches/month: 6,500</li>
+            <li>Brand search CR: 10% = 650 orders/month</li>
+            <li>Revenue: 650 × ₹2,130 = <strong>₹13.85L/month</strong></li>
+            <li>Google Ads budget: ₹40,000/month</li>
+            <li><strong>Net revenue add: ₹13.4L/month · ROAS: 34×</strong></li>
+          </ul>
+        </div>
+        <div class="tab-panel" id="lc3-fix">
+          <div class="fix-box">
+            <div class="fix-label">✓ One afternoon to set up. Revenue from Day 1.</div>
+            <p><strong>Month 1:</strong> Brand campaign — "RWDY", "Rowdy wear", "Vijay Deverakonda brand". Budget ₹40K/month. ROAS Day 1: 8–12×.<br><strong>Month 2:</strong> Google Shopping for top SKUs in ₹1,020–₹2,490 range.<br><strong>Month 3:</strong> Non-branded — "Indian streetwear", "oversized hoodies India".</p>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- LEAKS 04–06 combined compact -->
+    <div class="charts-row fade-up" style="transition-delay:0.15s;">
+      <div class="leak-card" style="margin-bottom:0;">
+        <div class="leak-header" onclick="this.closest('.leak-card').classList.toggle('open')">
+          <div class="leak-badge" style="background:linear-gradient(135deg,#D35400,#A84300);">
+            <div class="lb-num">04</div><div class="lb-lbl">Leak</div>
+          </div>
+          <div class="leak-info">
+            <div class="leak-name">Drop sell-through — 20% in week 1</div>
+            <div class="leak-tagline">Should be 55%+. No hype engine, no waitlist, no sequence.</div>
+          </div>
+          <div class="leak-pills"><span class="pill pill-green">₹4.2L/drop</span></div>
+          <span class="leak-chev">&#9662;</span>
+        </div>
+        <div class="leak-body"><div class="leak-inner">
+          <p>On a 500-unit drop at ₹1,800 avg: 100 units sell in week 1 vs 275 at benchmark. Extra full-price revenue: ₹3.15L + avoided discounting: ₹1.08L = <strong>₹4.2L per drop.</strong></p>
+          <div class="fix-box">
+            <div class="fix-label">The fix — 7-day pre-launch template</div>
+            <p>Day 1: teaser. Day 3: product reveal. Day 5: waitlist opens on app. Day 7: launch + Vijay post + WhatsApp blast + paid burst. Zero additional budget.</p>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="leak-card" style="margin-bottom:0;">
+        <div class="leak-header" onclick="this.closest('.leak-card').classList.toggle('open')">
+          <div class="leak-badge" style="background:linear-gradient(135deg,#E67E22,#B8600E);">
+            <div class="lb-num">05</div><div class="lb-lbl">Leak</div>
+          </div>
+          <div class="leak-info">
+            <div class="leak-name">AOV — no cross-sell, no bundles</div>
+            <div class="leak-tagline">Caps, socks, beanies exist. Never shown at the right moment.</div>
+          </div>
+          <div class="leak-pills"><span class="pill pill-green">₹1.9L/month</span></div>
+          <span class="leak-chev">&#9662;</span>
+        </div>
+        <div class="leak-body"><div class="leak-inner">
+          <p>18% accessory attach rate at PDP/cart (industry standard) × 1,150 orders × ₹899 avg accessory = <strong>₹1.86L/month.</strong></p>
+          <div class="fix-box">
+            <div class="fix-label">The fix — half-day dev work</div>
+            <p>"Complete the Look" on tee + hoodie PDPs. Cart-level add-on nudge for accessories under ₹999. Pre-built bundles (tee + cap + socks) at 5% discount.</p>
+          </div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Leak 06 -->
+    <div class="leak-card fade-up" style="transition-delay:0.2s;">
+      <div class="leak-header" onclick="this.closest('.leak-card').classList.toggle('open')">
+        <div class="leak-badge" style="background:linear-gradient(135deg,#5C544E,#3A3530);">
+          <div class="lb-num">06</div><div class="lb-lbl">Leak</div>
+        </div>
+        <div class="leak-info">
+          <div class="leak-name">Tee size guide — highest return category, simplest fix</div>
+          <div class="leak-tagline">Tees = 70% of revenue. Customers order regular size, receive oversized garment, return it. Product is right — communication is wrong.</div>
+        </div>
+        <div class="leak-pills">
+          <span class="pill pill-red">30-min content fix</span>
+          <span class="pill pill-green">₹0.4L + compounds</span>
+        </div>
+        <span class="leak-chev">&#9662;</span>
+      </div>
+      <div class="leak-body"><div class="leak-inner">
+        <p>Add one styled callout above Add to Cart on every tee page: <em>"RWDY tees run oversized by design. Size down for regular fit — check size guide before ordering."</em> Add a before/after visual. Direct recovery ₹0.4L/month — but every prevented return is a customer who keeps the product and potentially reorders.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- IMMEDIATE FIXES -->
+<section id="fixes">
+  <div class="container">
+    <div class="sec-eyebrow">Section 04</div>
+    <div class="sec-heading">Priority fixes — first 4 weeks</div>
+    <p class="sec-sub">Found on live website audit. Week 1 items need no approvals — content changes, ad setup, config fixes. Week 2–4 items need dev time.</p>
+
+    <div class="fix-grid fade-up">
+      <div class="fix-item">
+        <div class="fix-num">01</div>
+        <div class="fix-content">
+          <div class="fix-title">Meta Pixel audit — first priority</div>
+          <div class="fix-body">Pixel is almost certainly misfiring. Fix attribution before changing any campaign. Typically reveals 30–50% more conversions — no spend change.</div>
+          <span class="fix-tag tag-q">Week 1 · Dev</span>
+        </div>
+      </div>
+      <div class="fix-item">
+        <div class="fix-num">02</div>
+        <div class="fix-content">
+          <div class="fix-title">Google Ads brand campaign live</div>
+          <div class="fix-body">₹13.4L/month net at ₹40K spend. One afternoon to set up. Revenue from Day 1.</div>
+          <span class="fix-tag tag-q">Week 1 · Marketing</span>
+        </div>
+      </div>
+      <div class="fix-item">
+        <div class="fix-num">03</div>
+        <div class="fix-content">
+          <div class="fix-title">Winter collection still front and centre — it's April</div>
+          <div class="fix-body">Sweatshirt pages say "perfect for cozy winter days." It's summer. Set Summer as default nav, archive winter. Update all product copy to evergreen framing.</div>
+          <span class="fix-tag tag-s">Week 1 · Content</span>
+        </div>
+      </div>
+      <div class="fix-item">
+        <div class="fix-num">04</div>
+        <div class="fix-content">
+          <div class="fix-title">Vijay Deverakonda's name not on the website</div>
+          <div class="fix-body">The brand's biggest differentiator is invisible to Google and AI. Add "Founded by Vijay Deverakonda" to homepage + About. Add Organization + Person schema.</div>
+          <span class="fix-tag tag-s">Week 1 · SEO</span>
+        </div>
+      </div>
+      <div class="fix-item">
+        <div class="fix-num">05</div>
+        <div class="fix-content">
+          <div class="fix-title">App Store has Vijay's name misspelled</div>
+          <div class="fix-body">Listed as "Vijay Deverkonda" — missing the 'a'. App Store searches won't reliably surface RWDY. 30-minute fix in both app store developer consoles.</div>
+          <span class="fix-tag tag-s">Week 1 · App</span>
+        </div>
+      </div>
+      <div class="fix-item">
+        <div class="fix-num">06</div>
+        <div class="fix-content">
+          <div class="fix-title">No product schema — no rich snippets in Google</div>
+          <div class="fix-body">RWDY products show no price, rating, or availability in search results. Competitors with schema get higher click-through. 2–3 days dev work.</div>
+          <span class="fix-tag tag-s">Week 2 · Dev</span>
+        </div>
+      </div>
+      <div class="fix-item">
+        <div class="fix-num">07</div>
+        <div class="fix-content">
+          <div class="fix-title">'RWDY' confused with other brands in search and AI</div>
+          <div class="fix-body">Search 'RWDY' and you find an oil company, a US streetwear brand, a Tennessee label — before Vijay's brand. Need Wikipedia presence, Knowledge Panel, on-site disambiguation.</div>
+          <span class="fix-tag tag-s">Week 2–4 · SEO</span>
+        </div>
+      </div>
+      <div class="fix-item">
+        <div class="fix-num">08</div>
+        <div class="fix-content">
+          <div class="fix-title">Tee size callout above Add to Cart</div>
+          <div class="fix-body">"RWDY tees are oversized by design. Size down for regular fit." Add visual comparison. Reduces returns, support tickets, and repeat-purchase hesitation.</div>
+          <span class="fix-tag tag-q">Week 1 · Content</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="container">
+    <div class="sec-eyebrow">Section 05</div>
+    <div class="sec-heading">Q2 execution plan — April to July</div>
+    <p class="sec-sub">4 months. Month 1–3 fix the foundation. Month 4 (July) begins expansion prep before October. Revenue targets reflect fixes compounding — growth layer adds on top from Q3.</p>
+
+    <div class="tl-outer fade-up">
+      <div class="tl-track">
+        <div class="tl-acts">
+          <div class="tl-act" style="flex:3;">Month 1 — Fix Foundations <span>April 2026</span></div>
+          <div class="tl-act" style="flex:3;">Month 2 — Build Engine <span>May 2026</span></div>
+          <div class="tl-act" style="flex:3;">Month 3 — Scale Fixes <span>June 2026</span></div>
+          <div class="tl-act" style="flex:3;">Month 4 — Prep for Oct <span>July 2026</span></div>
+        </div>
+        <div class="tl-bar">
+          <div class="tl-seg" style="flex:3;background:#C0392B;" data-tooltip="Month 1 — April&#10;Meta Pixel audit. Google Ads live. RTO flows. Website fixes. Season switch. Tee size guide.&#10;&#10;Revenue target: ₹28–35L (fixes beginning to land)">Month 1 · April</div>
+          <div class="tl-seg" style="flex:3;background:#9B2D21;" data-tooltip="Month 2 — May&#10;First hype drop. WhatsApp retention live. Google Shopping. Cross-sell on PDPs.&#10;&#10;Revenue target: ₹40–48L (most fixes now active)">Month 2 · May</div>
+          <div class="tl-seg" style="flex:3;background:#7B241C;" data-tooltip="Month 3 — June&#10;All fixes compounding. Second hype drop. Win-back campaigns. Retention accelerating.&#10;&#10;Revenue target: ₹48–55L (fixes at full run rate)">Month 3 · June</div>
+          <div class="tl-seg" style="flex:3;background:#641E16;" data-tooltip="Month 4 — July&#10;North India campaigns in test. October playbook built. Inventory planned. Campaign creatives locked.&#10;&#10;Revenue target: ₹52–58L (early expansion adds on top)">Month 4 · July</div>
+        </div>
+        <div class="tl-weeks">
+          <div class="tl-wk" style="width:8.33%">W1<br><span class="wkdate">7 Apr</span></div>
+          <div class="tl-wk" style="width:8.33%">W2<br><span class="wkdate">14 Apr</span></div>
+          <div class="tl-wk" style="width:8.33%">W3<br><span class="wkdate">21 Apr</span></div>
+          <div class="tl-wk" style="width:8.34%">W4<br><span class="wkdate">28 Apr</span></div>
+          <div class="tl-wk" style="width:8.33%">W5<br><span class="wkdate">5 May</span></div>
+          <div class="tl-wk" style="width:8.33%">W6<br><span class="wkdate">12 May</span></div>
+          <div class="tl-wk" style="width:8.33%">W7<br><span class="wkdate">19 May</span></div>
+          <div class="tl-wk" style="width:8.34%">W8<br><span class="wkdate">26 May</span></div>
+          <div class="tl-wk" style="width:8.33%">W9<br><span class="wkdate">2 Jun</span></div>
+          <div class="tl-wk" style="width:8.33%">W10<br><span class="wkdate">16 Jun</span></div>
+          <div class="tl-wk" style="width:8.33%">W11<br><span class="wkdate">1 Jul</span></div>
+          <div class="tl-wk" style="width:8.34%">W12<br><span class="wkdate">15 Jul</span></div>
+        </div>
+        <div class="tl-ms">
+          <div class="ms" style="left:4%"><div class="ms-diamond"></div><div class="ms-text">Pixel audited</div></div>
+          <div class="ms" style="left:12%"><div class="ms-diamond"></div><div class="ms-text">Google Ads live</div></div>
+          <div class="ms" style="left:25%"><div class="ms-diamond"></div><div class="ms-text">RTO flows active</div></div>
+          <div class="ms" style="left:41%"><div class="ms-diamond"></div><div class="ms-text">First hype drop</div></div>
+          <div class="ms" style="left:55%"><div class="ms-diamond"></div><div class="ms-text">WhatsApp retention</div></div>
+          <div class="ms" style="left:70%"><div class="ms-diamond"></div><div class="ms-text">North India test</div></div>
+          <div class="ms" style="left:84%"><div class="ms-diamond"></div><div class="ms-text">Second hype drop</div></div>
+          <div class="ms" style="left:96%"><div class="ms-diamond"></div><div class="ms-text">October ready</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="month-cards fade-up" style="transition-delay:0.1s;grid-template-columns:repeat(4,1fr);">
+      <div class="month-card">
+        <div class="month-header" style="background:#C0392B;">
+          <span>MONTH 1 — APRIL</span><span>₹28–35L</span>
+        </div>
+        <div class="month-body">
+          <div class="month-section">Tech & Ops</div>
+          <ul><li>Meta Pixel audit + fix</li><li>GA4 e-commerce verified</li><li>Season switch to Summer</li><li>Vijay's name on-site + schema</li><li>App Store name corrected</li><li>Fit callout on all tee pages</li></ul>
+          <div class="month-section">Marketing</div>
+          <ul><li>Google Ads brand campaign live</li><li>Retargeting audiences built</li><li>RTO COD verification flow</li><li>WhatsApp tracking notifications</li></ul>
+        </div>
+      </div>
+      <div class="month-card">
+        <div class="month-header" style="background:#9B2D21;">
+          <span>MONTH 2 — MAY</span><span>₹40–48L</span>
+        </div>
+        <div class="month-body">
+          <div class="month-section">Tech & Ops</div>
+          <ul><li>Pre-delivery confirmation live</li><li>Cross-sell widgets on PDPs + cart</li><li>Product schema live</li><li>Bundle product listings</li></ul>
+          <div class="month-section">Marketing</div>
+          <ul><li>First drop — 7-day hype sequence</li><li>WhatsApp retention flows live</li><li>Google Shopping activated</li><li>Post-purchase cross-sell flow</li></ul>
+        </div>
+      </div>
+      <div class="month-card">
+        <div class="month-header" style="background:#7B241C;">
+          <span>MONTH 3 — JUNE</span><span>₹48–55L</span>
+        </div>
+        <div class="month-body">
+          <div class="month-section">Tech & Ops</div>
+          <ul><li>All 6 fixes at full run rate</li><li>Retention compounding</li><li>WhatsApp win-back live</li><li>AOV upsell optimised</li></ul>
+          <div class="month-section">Marketing</div>
+          <ul><li>Second drop — full hype sequence</li><li>Google non-brand test</li><li>Win-back: 90-day lapsed</li><li>Women's capsule briefed</li></ul>
+        </div>
+      </div>
+      <div class="month-card">
+        <div class="month-header" style="background:#641E16;">
+          <span>MONTH 4 — JULY</span><span>₹52–58L</span>
+        </div>
+        <div class="month-body">
+          <div class="month-section">Tech & Ops</div>
+          <ul><li>Full Q2 channel audit</li><li>October inventory planning</li><li>Q3 campaign creatives built</li><li>October pre-build starts</li></ul>
+          <div class="month-section">Marketing</div>
+          <ul><li>North India campaigns test</li><li>Influencer seeding begins</li><li>Third drop — full sequence</li><li>Q3 Meta restructure locked</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVENUE BRIDGE -->
+<section id="bridge">
+  <div class="container">
+    <div class="sec-eyebrow">Section 06</div>
+    <div class="sec-heading">Where each lakh comes from</div>
+    <p class="sec-sub">Conservative estimates. No increase in current Meta spend assumed. Recoveries from fixing what's broken.</p>
+
+    <!-- Waterfall visual -->
+    <div class="wf-visual fade-up">
+      <div class="wf-title">Revenue journey — ₹20.5L today → ₹48L after fixes</div>
+      <div class="wf-sub">Each bar shows monthly contribution. Before Phase 2 growth spend.</div>
+      <div class="wf-chart">
+        <div class="wf-col">
+          <div class="wf-spacer"></div>
+          <div class="wf-block" style="height:41%;background:#5C544E;"><span>₹20.5L<br>Today</span></div>
+          <div class="wf-col-lbl">Current<br>Revenue</div>
+        </div>
+        <div class="wf-col">
+          <div class="wf-spacer"></div>
+          <div class="wf-block" style="height:7.4%;background:#C0392B;"><span style="font-size:8px;">+₹3.7L</span></div>
+          <div class="wf-col-lbl">RTO<br>Fix</div>
+        </div>
+        <div class="wf-col">
+          <div class="wf-spacer"></div>
+          <div class="wf-block" style="height:7.6%;background:#A93226;"><span style="font-size:8px;">+₹3.8L</span></div>
+          <div class="wf-col-lbl">Retention<br>Fix</div>
+        </div>
+        <div class="wf-col">
+          <div class="wf-spacer"></div>
+          <div class="wf-block" style="height:26.8%;background:#7B241C;"><span>+₹13.4L</span></div>
+          <div class="wf-col-lbl">Google<br>Ads</div>
+        </div>
+        <div class="wf-col">
+          <div class="wf-spacer"></div>
+          <div class="wf-block" style="height:8.4%;background:#D35400;"><span style="font-size:8px;">+₹4.2L</span></div>
+          <div class="wf-col-lbl">Drop<br>Sell-Through</div>
+        </div>
+        <div class="wf-col">
+          <div class="wf-spacer"></div>
+          <div class="wf-block" style="height:3.8%;background:#E67E22;"><span style="font-size:8px;">+₹1.9L</span></div>
+          <div class="wf-col-lbl">AOV<br>Upsell</div>
+        </div>
+        <div class="wf-col">
+          <div class="wf-spacer"></div>
+          <div class="wf-block" style="height:0.8%;background:#B8860B;"></div>
+          <div class="wf-col-lbl">Size<br>Guide</div>
+        </div>
+        <div class="wf-col" style="flex:1.5;">
+          <div class="wf-spacer"></div>
+          <div class="wf-block" style="height:96%;background:linear-gradient(135deg,#1E7A4A,#155C38);"><span>₹48L<br>All fixes<br>active</span></div>
+          <div class="wf-col-lbl">Projected<br>Revenue</div>
+        </div>
+        <div class="wf-baseline"></div>
+      </div>
+    </div>
+
+    <div class="bridge-table-wrap fade-up" style="transition-delay:0.1s;">
+      <table class="bridge-table">
+        <thead>
+          <tr><th>Fix / Lever</th><th>Mechanism</th><th>Monthly Recovery</th><th>Month Active</th><th>Certainty</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>RTO fix — 25% → 11%</strong></td><td>COD verification + tracking comms + address confirmation</td><td class="rec-num">₹3.7L</td><td>Month 1</td><td class="cert-h">High</td></tr>
+          <tr><td><strong>Retention — 12% → 30% repeat</strong></td><td>WhatsApp post-purchase + drop alerts + win-back flows</td><td class="rec-num">₹3.8L</td><td>Month 2</td><td class="cert-h">High</td></tr>
+          <tr><td><strong>Google Ads — brand search</strong></td><td>Brand + Shopping campaigns at ₹40K/month spend</td><td class="rec-num">₹13.4L</td><td>Month 1</td><td class="cert-h">High</td></tr>
+          <tr><td><strong>Drop sell-through — 20% → 55%</strong></td><td>7-day hype sequence per drop</td><td class="rec-num">₹4.2L/drop</td><td>Month 2</td><td class="cert-m">Medium</td></tr>
+          <tr><td><strong>AOV — accessory cross-sell</strong></td><td>"Complete the Look" on PDPs + cart upsell</td><td class="rec-num">₹1.9L</td><td>Month 2</td><td class="cert-m">Medium</td></tr>
+          <tr><td><strong>Tee size guide</strong></td><td>Callout above Add to Cart on all tee pages</td><td class="rec-num">₹0.4L</td><td>Month 1</td><td class="cert-h">High</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bridge-summary fade-up" style="transition-delay:0.15s;">
+      <div class="bridge-row">
+        <div class="bridge-lbl" style="color:var(--ink2);">Starting point — current monthly revenue</div>
+        <div class="bridge-val s">₹20.5L</div>
+      </div>
+      <div class="bridge-row">
+        <div class="bridge-lbl">+ All 6 leaks fixed (conservative)</div>
+        <div class="bridge-val g">+ ₹27.5L</div>
+      </div>
+      <div class="bridge-row hl">
+        <div class="bridge-lbl" style="font-weight:700;">= Monthly revenue after all 6 fixes active</div>
+        <div class="bridge-val g">₹48L</div>
+      </div>
+      <div class="bridge-row dk">
+        <div class="bridge-lbl" style="color:var(--ink3);font-size:13px;">% of ₹1Cr target — fixes only, no growth layer. Q3 onwards adds Meta restructure, marketplace, and geographic expansion on top.</div>
+        <div class="bridge-val s">48%</div>
+      </div>
+    </div>
+
+    <!-- Interactive calculator -->
+    <div class="calc-section fade-up" style="transition-delay:0.2s;">
+      <div class="calc-title">Adjust the assumptions</div>
+      <div class="calc-sub">Change any number below — the recovery estimate updates automatically.</div>
+      <div class="calc-grid">
+        <div class="calc-card">
+          <h4>Business Baseline</h4>
+          <div class="calc-row"><div class="calc-lbl">Monthly orders (midpoint)</div><input class="calc-inp" id="c-orders" type="number" value="1150" oninput="recalc()"></div>
+          <div class="calc-row"><div class="calc-lbl">D2C AOV (₹)</div><input class="calc-inp" id="c-aov" type="number" value="2130" oninput="recalc()"></div>
+          <div class="calc-row"><div class="calc-lbl">Current monthly revenue (₹L)</div><input class="calc-inp" id="c-rev" type="number" value="20.5" step="0.5" oninput="recalc()"></div>
+        </div>
+        <div class="calc-card">
+          <h4>RTO Fix</h4>
+          <div class="calc-row"><div class="calc-lbl">Current RTO rate (%)</div><input class="calc-inp" id="c-rto-cur" type="number" value="25" oninput="recalc()"></div>
+          <div class="calc-row"><div class="calc-lbl">Target RTO rate (%)</div><input class="calc-inp" id="c-rto-tgt" type="number" value="11" oninput="recalc()"></div>
+          <div class="calc-row"><div class="calc-lbl">Fwd + return + repack (₹)</div><input class="calc-inp" id="c-logistics" type="number" value="160" oninput="recalc()"></div>
+        </div>
+        <div class="calc-card">
+          <h4>Retention + Google Ads</h4>
+          <div class="calc-row"><div class="calc-lbl">Current repeat rate (%)</div><input class="calc-inp" id="c-ret-cur" type="number" value="12" oninput="recalc()"></div>
+          <div class="calc-row"><div class="calc-lbl">Target repeat rate (%)</div><input class="calc-inp" id="c-ret-tgt" type="number" value="30" oninput="recalc()"></div>
+          <div class="calc-row"><div class="calc-lbl">Google Ads budget (₹)</div><input class="calc-inp" id="c-gads" type="number" value="40000" oninput="recalc()"></div>
+        </div>
+      </div>
+      <div class="calc-result">
+        <div class="calc-r-item">
+          <div class="calc-r-label">Total monthly recovery</div>
+          <div class="calc-r-val" id="r-total">₹27.5L</div>
+        </div>
+        <div class="calc-r-item">
+          <div class="calc-r-label">Projected monthly revenue</div>
+          <div class="calc-r-val" id="r-proj">₹48.0L</div>
+        </div>
+        <div class="calc-r-item">
+          <div class="calc-r-label">% of ₹1Cr target (fixes only)</div>
+          <div class="calc-r-val" id="r-pct">48%</div>
+        </div>
+      </div>
+      <p class="calc-note">Sell-through (₹4.2L), AOV (₹1.9L), and size guide (₹0.4L) are fixed estimates in this calculator. Adjust the three cards above to stress-test the biggest variables.</p>
+    </div>
+  </div>
+</section>
+
+<!-- YEAR PLAN -->
+<section id="yearplan">
+  <div class="container">
+    <div class="sec-eyebrow">Section 07</div>
+    <div class="sec-heading">The full year — Q2 to Q1 2027</div>
+    <p class="sec-sub">The 3-month fix window gets RWDY to ₹48L. The remaining three quarters get it to ₹1Cr and beyond. Here's the high-level arc.</p>
+
+    <!-- Year arc visual -->
+    <div class="chart-card fade-up" style="margin-bottom:28px;">
+      <div class="chart-title">Revenue trajectory — April 2026 to March 2027</div>
+      <div class="chart-sub">Conservative base case. Phase 2 growth layer adds on top of fixed foundation.</div>
+      <div style="display:flex;align-items:flex-end;gap:4px;height:160px;padding:0 8px;margin-bottom:8px;">
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:0;">
+          <div style="width:100%;background:#E5DFD8;border-radius:4px 4px 0 0;height:20.5%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:9px;font-weight:700;color:#5C544E;">₹20.5L</span></div>
+          <div style="font-size:9px;color:var(--ink3);margin-top:4px;text-align:center;">Apr</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+          <div style="width:100%;background:#D4564A;border-radius:4px 4px 0 0;height:35%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:9px;font-weight:700;color:#fff;">₹35L</span></div>
+          <div style="font-size:9px;color:var(--ink3);margin-top:4px;">May</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+          <div style="width:100%;background:#C0392B;border-radius:4px 4px 0 0;height:48%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:9px;font-weight:700;color:#fff;">₹48L</span></div>
+          <div style="font-size:9px;color:var(--ink3);margin-top:4px;">Jun</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+          <div style="width:100%;background:#A84300;border-radius:4px 4px 0 0;height:52%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:9px;font-weight:700;color:#fff;">₹52L</span></div>
+          <div style="font-size:9px;color:var(--ink3);margin-top:4px;">Jul</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+          <div style="width:100%;background:#9B2D21;border-radius:4px 4px 0 0;height:58%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:9px;font-weight:700;color:#fff;">₹58L</span></div>
+          <div style="font-size:9px;color:var(--ink3);margin-top:4px;">Aug</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+          <div style="width:100%;background:#7B241C;border-radius:4px 4px 0 0;height:65%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:9px;font-weight:700;color:#fff;">₹65L</span></div>
+          <div style="font-size:9px;color:var(--ink3);margin-top:4px;">Sep</div>
+        </div>
+        <div style="width:2px;background:var(--border);align-self:stretch;margin:0 2px;"></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+          <div style="width:100%;background:#641E16;border-radius:4px 4px 0 0;height:75%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:9px;font-weight:700;color:#fff;">₹75L</span></div>
+          <div style="font-size:9px;color:var(--ink3);margin-top:4px;">Oct</div>
+        </div>
+        <div style="flex:1.2;display:flex;flex-direction:column;align-items:center;">
+          <div style="width:100%;background:#4D1414;border-radius:4px 4px 0 0;height:100%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:10px;font-weight:700;color:#fff;">₹1Cr+</span></div>
+          <div style="font-size:9px;color:var(--ink3);margin-top:4px;">Nov</div>
+        </div>
+        <div style="flex:1.2;display:flex;flex-direction:column;align-items:center;">
+          <div style="width:100%;background:#3A0F0F;border-radius:4px 4px 0 0;height:95%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:10px;font-weight:700;color:#fff;">₹95L</span></div>
+          <div style="font-size:9px;color:var(--ink3);margin-top:4px;">Dec</div>
+        </div>
+        <div style="width:2px;background:var(--border);align-self:stretch;margin:0 2px;"></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+          <div style="width:100%;background:#1E7A4A;border-radius:4px 4px 0 0;height:70%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:9px;font-weight:700;color:#fff;">₹70L</span></div>
+          <div style="font-size:9px;color:var(--ink3);margin-top:4px;">Jan</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+          <div style="width:100%;background:#155C38;border-radius:4px 4px 0 0;height:78%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:9px;font-weight:700;color:#fff;">₹78L</span></div>
+          <div style="font-size:9px;color:var(--ink3);margin-top:4px;">Feb</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+          <div style="width:100%;background:#0F3D22;border-radius:4px 4px 0 0;height:85%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px;"><span style="font-size:9px;font-weight:700;color:#fff;">₹85L</span></div>
+          <div style="font-size:9px;color:var(--ink3);margin-top:4px;">Mar</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:20px;font-size:11px;color:var(--ink3);padding-top:8px;border-top:1px solid var(--border);">
+        <span>█ <span style="color:#C0392B;">Q2 Apr–Jun</span> — Fix foundation</span>
+        <span>█ <span style="color:#9B2D21;">Q3 Jul–Sep</span> — Expand nationally</span>
+        <span>█ <span style="color:#4D1414;">Q4 Oct–Dec</span> — Peak season push</span>
+        <span>█ <span style="color:#1E7A4A;">Q1 2027</span> — Consolidate & grow</span>
+      </div>
+    </div>
+
+    <!-- Quarter cards -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;" class="fade-up">
+
+      <!-- Q3 -->
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);">
+        <div style="background:#9B2D21;padding:16px 20px;">
+          <div style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:15px;font-weight:400;color:#fff;letter-spacing:1px;text-transform:uppercase;">Q3 — July to September 2026</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:3px;">National Expansion Phase · Target: ₹52L–₹65L/month</div>
+        </div>
+        <div style="padding:20px;">
+          <div style="font-size:10px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">What this quarter is about</div>
+          <p style="font-size:13px;line-height:1.7;color:var(--ink);margin-bottom:14px;">Foundation is fixed. Fixes are compounding. Now you expand geographically and restructure paid media to deliver the ROAS it should have been delivering all along. The lull before October gives time to build the campaigns, test the creatives, and seed influencers in new markets — so when October hits, it hits at full capacity.</p>
+          <div style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px;">Key Initiatives</div>
+          <ul style="font-size:13px;line-height:1.8;color:var(--ink);padding-left:16px;">
+            <li><strong>Meta campaign restructure</strong> — 3-tier funnel: TOF (fans of Telugu cinema + streetwear interest in Mumbai, Delhi, Pune), MOF (retargeting product viewers + cart abandoners), BOF (past purchaser upsell). Move ROAS from 1.99× to 3.5–4.5×</li>
+            <li><strong>North & West India expansion</strong> — Dedicated campaign sets for Mumbai, Delhi, Pune. Hinglish copy. Mumbai/Delhi street culture references — not Telugu touchpoints. Micro-influencer seeding in Hindi-belt streetwear community</li>
+            <li><strong>Marketplace activation</strong> — List curated catalog on Myntra. Select Culture Line on Ajio Luxe for premium perception. Start building Tier 2/3 reach without D2C logistics burden</li>
+            <li><strong>Women's capsule development</strong> — Design and sample a 6–8 piece women's streetwear line. Launch in Q4</li>
+            <li><strong>Drop cadence to 2/month</strong> — With hype sequence template built, scale to 2 structured drops per month. Each with pre-launch, waitlist, coordinated push</li>
+            <li><strong>October campaign pre-build</strong> — Campaigns, creatives, influencer deals, and inventory plans all locked by end of September</li>
+          </ul>
+          <div style="margin-top:14px;background:var(--bg);border-radius:6px;padding:12px 16px;">
+            <div style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;">Revenue drivers</div>
+            <div style="font-size:12px;color:var(--ink2);line-height:1.6;">Fixed funnel (₹48L baseline) + Meta restructure (+₹6–8L) + North India campaigns (+₹5–8L) + Myntra activation (+₹3–5L) + second hype drop per month (+₹4L) = <strong style="color:var(--ink);">₹65–70L by September</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);">
+        <div style="background:#4D1414;padding:16px 20px;">
+          <div style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:15px;font-weight:400;color:#fff;letter-spacing:1px;text-transform:uppercase;">Q4 — October to December 2026</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:3px;">Peak Season Push · Target: ₹75L–₹1Cr+/month</div>
+        </div>
+        <div style="padding:20px;">
+          <div style="font-size:10px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">What this quarter is about</div>
+          <p style="font-size:13px;line-height:1.7;color:var(--ink);margin-bottom:14px;">October–December is RWDY's historically best period. With a fixed funnel, national campaigns, a retention engine firing, and 2 structured drops per month — this is when everything compounds. November is the month to hit ₹1Cr for the first time. The entire year builds to this.</p>
+          <div style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px;">Key Initiatives</div>
+          <ul style="font-size:13px;line-height:1.8;color:var(--ink);padding-left:16px;">
+            <li><strong>Full national Meta + Google push</strong> — Scale spend 30–40% on proven campaigns. Both brand and non-brand. All geographies firing. Performance-Max for top SKUs</li>
+            <li><strong>Signature October drop</strong> — The year's biggest drop. Pre-launch starts mid-September. Vijay-fronted campaign. Culture collab (Indian artisan / musician) for earned media. Target 60%+ sell-through in first 48 hours</li>
+            <li><strong>Women's capsule launch</strong> — Timed to October-November. Separate campaign set targeting female streetwear buyers in metros. Opens a new acquisition channel</li>
+            <li><strong>Rowdy Coins reactivation</strong> — Loyalty programme push to app base. Redeem coins before year end. Drives repeat purchase in the highest-revenue months</li>
+            <li><strong>Pop-up / experiential</strong> — Physical activation in Mumbai or Bengaluru for brand heat and press. Modelled on the Hyderabad event that drove 91% sales spike</li>
+            <li><strong>Influencer week</strong> — Coordinated seeding to 20–30 micro-influencers across North + South simultaneously. All posting the same week as the October drop</li>
+          </ul>
+          <div style="margin-top:14px;background:var(--bg);border-radius:6px;padding:12px 16px;">
+            <div style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;">Revenue target</div>
+            <div style="font-size:12px;color:var(--ink2);line-height:1.6;">₹75L in October → <strong style="color:var(--ink);">₹1Cr+ in November</strong> (first time) → ₹90–95L in December (slight post-peak dip). Q4 total: <strong style="color:var(--ink);">₹2.65–₹2.95Cr</strong></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Q1 2027 - full width -->
+    <div style="margin-top:16px;background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);" class="fade-up" style="transition-delay:0.1s;">
+      <div style="background:#1E7A4A;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+        <div>
+          <div style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:15px;font-weight:400;color:#fff;letter-spacing:1px;text-transform:uppercase;">Q1 2027 — January to March</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:3px;">Consolidation + Next Layer · Target: ₹70L–₹85L/month</div>
+        </div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);font-style:italic;">Post-peak. Channel the Q4 momentum into a higher floor.</div>
+      </div>
+      <div style="padding:20px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;">
+        <div>
+          <div style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px;">Retention Maturity</div>
+          <ul style="font-size:12px;line-height:1.8;color:var(--ink);padding-left:14px;">
+            <li>Q4 buyers are the largest new-customer cohort ever — the win-back flow targeting them becomes the highest-value campaign of Q1</li>
+            <li>Repeat rate should be trending toward 25–30% by now</li>
+            <li>Loyalty tier launch — Rowdy Coins with actual tangible rewards (exclusive drops, early access, merch)</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px;">Channel Depth</div>
+          <ul style="font-size:12px;line-height:1.8;color:var(--ink);padding-left:14px;">
+            <li>Myntra revenue should be contributing ₹8–12L/month by Q1</li>
+            <li>Marketplace expansion — Amazon Prime Day prep for July 2027</li>
+            <li>International pilot — diaspora-targeting on Meta for US, UK, AU markets where Indian streetwear has strong demand signal</li>
+            <li>Campus ambassador program — 30–40 college campuses across South + North India generating organic brand touchpoints</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px;">Product & Brand</div>
+          <ul style="font-size:12px;line-height:1.8;color:var(--ink);padding-left:14px;">
+            <li>Spring/Summer 2027 collection — designed in Q3, launched Jan–Feb. First collection built with North India audience in mind from day one</li>
+            <li>Footwear pilot — sliders or sneaker collab. RWDY's most requested adjacent category</li>
+            <li>Culture Drop Series vol.2 — second Indian artisan collaboration. Bigger, more press-targeted</li>
+            <li>Begin positioning RWDY as India's answer to global streetwear — not just Vijay's brand</li>
+          </ul>
+        </div>
+      </div>
+      <div style="background:var(--bg);border-top:1px solid var(--border);padding:14px 20px;display:flex;gap:24px;flex-wrap:wrap;">
+        <div style="font-size:12px;color:var(--ink2);"><strong style="color:var(--ink);">Q1 Revenue floor:</strong> ₹70L/month (post-peak base — higher than any month before Q4)</div>
+        <div style="font-size:12px;color:var(--ink2);"><strong style="color:var(--ink);">Trailing 12-month revenue:</strong> ~₹7–8Cr ARR by March 2027</div>
+        <div style="font-size:12px;color:var(--ink2);"><strong style="color:var(--ink);">Key milestone:</strong> ₹1Cr/month becomes the new consistent floor, not a one-month peak</div>
+      </div>
+    </div>
+
+    <!-- Summary strip -->
+    <div style="margin-top:24px;background:var(--ink);border-radius:10px;padding:28px 32px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;" class="fade-up" style="transition-delay:0.2s;">
+      <div style="text-align:center;border-right:1px solid rgba(255,255,255,0.1);padding-right:24px;">
+        <div style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:40px;font-weight:400;color:var(--red);letter-spacing:-1px;">₹48L</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;">Q2 exit run rate</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px;">Fixes only. No growth spend.</div>
+      </div>
+      <div style="text-align:center;border-right:1px solid rgba(255,255,255,0.1);padding-right:24px;">
+        <div style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:40px;font-weight:400;color:#E67E22;letter-spacing:-1px;">₹65L</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;">Q3 exit run rate</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px;">National expansion firing.</div>
+      </div>
+      <div style="text-align:center;border-right:1px solid rgba(255,255,255,0.1);padding-right:24px;">
+        <div style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:40px;font-weight:400;color:#27AE60;letter-spacing:-1px;">₹1Cr+</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;">Q4 peak month</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px;">First ₹1Cr month. November 2026.</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:40px;font-weight:400;color:#27AE60;letter-spacing:-1px;">₹7–8Cr</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;">ARR by March 2027</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px;">Annualised run rate at Q1 2027 exit.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>Sources & Benchmarks</h3>
+        <ul>
+          <li>RTO norm 10–12%<span class="src">Unicommerce E-commerce Index, 2024</span></li>
+          <li>Blended ROAS 3.5–5×<span class="src">AppsFlyer State of eCommerce India, 2024</span></li>
+          <li>Repeat rate 25–40%<span class="src">AppsFlyer State of eCommerce India, 2024</span></li>
+          <li>Cart abandonment 68–70%<span class="src">Baymard Institute, 2024</span></li>
+          <li>D2C AOV ₹1,200–₹1,800<span class="src">Unicommerce / Statista India Fashion D2C, 2024</span></li>
+          <li>Drop sell-through 50–70%<span class="src">Business of Fashion DTC Drops Report, 2023</span></li>
+          <li>COD norms 60–70%<span class="src">Razorpay Payment Report, 2024</span></li>
+          <li>Metro delivery 3–4 days<span class="src">Delhivery SLA standards, 2024</span></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Still Need From The Team</h3>
+        <ul>
+          <li>Is ₹1.23Cr the 6-month total or monthly?</li>
+          <li>Monthly website sessions + GA4 screenshot</li>
+          <li>D2C conversion rate (sessions → purchase)</li>
+          <li>New vs returning customer revenue split</li>
+          <li>Meta campaign structure (objectives, audiences)</li>
+          <li>Has the Meta Pixel been audited?</li>
+          <li>Total app users and monthly actives</li>
+          <li>Revenue from Myntra / Amazon last 3 months</li>
+          <li>Monthly revenue Oct, Nov, Dec 2025</li>
+          <li>Number of drops per month on average</li>
+        </ul>
+      </div>
+    </div>
+    <div class="closing">
+      <div class="closing-h">You don't scale a leaking bucket.</div>
+      <div class="closing-s">Fix the leaks first. Then fill it.</div>
+      <div class="closing-s" style="margin-top:6px;">ThinkPivot.ai + The Funnel Story &nbsp;·&nbsp; Rajeev Kumar Pandey &nbsp;·&nbsp; April 2026</div>
+      <div class="closing-c">Internal draft. Prepared before the VD meeting. Not for external circulation.</div>
+    </div>
+  </div>
+</footer>
+
+<div class="tooltip-el" id="tt"></div>
+
+<script>
+// ── STICKY NAV ───────────────────────────
+const nav = document.getElementById('sticky-nav');
+const hero = document.getElementById('hero');
+const obs1 = new IntersectionObserver(e => nav.classList.toggle('visible', !e[0].isIntersecting), {threshold:0});
+obs1.observe(hero);
+
+const secs = document.querySelectorAll('section[id], header[id]');
+const navAs = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  secs.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+  navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+}, {passive:true});
+
+// ── FADE-UP ON SCROLL ─────────────────────
+const obs2 = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade-up').forEach(el => obs2.observe(el));
+
+// ── LEAK TABS ─────────────────────────────
+function lt(btn, cardId, panelId) {
+  const card = btn.closest('.leak-inner');
+  card.querySelectorAll('.leak-tab').forEach(t => t.classList.remove('active'));
+  card.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+
+// ── TOOLTIP ───────────────────────────────
+const tt = document.getElementById('tt');
+document.querySelectorAll('[data-tooltip]').forEach(el => {
+  el.addEventListener('mouseenter', () => { tt.textContent = el.dataset.tooltip; tt.classList.add('vis'); });
+  el.addEventListener('mousemove', e => { tt.style.left=(e.clientX+14)+'px'; tt.style.top=(e.clientY-10)+'px'; });
+  el.addEventListener('mouseleave', () => tt.classList.remove('vis'));
+});
+
+// ── CALCULATOR ────────────────────────────
+function recalc() {
+  const orders = +document.getElementById('c-orders').value||0;
+  const aov = +document.getElementById('c-aov').value||0;
+  const rev = +document.getElementById('c-rev').value||0;
+  const rtoCur = +document.getElementById('c-rto-cur').value/100||0;
+  const rtoTgt = +document.getElementById('c-rto-tgt').value/100||0;
+  const logistics = +document.getElementById('c-logistics').value||0;
+  const retCur = +document.getElementById('c-ret-cur').value/100||0;
+  const retTgt = +document.getElementById('c-ret-tgt').value/100||0;
+  const gads = +document.getElementById('c-gads').value||0;
+
+  const rtoRec = Math.max(0, orders*(rtoCur-rtoTgt)*(aov+logistics)/100000);
+  const retExtra = Math.max(0, orders*0.865*(retTgt-retCur));
+  const retRec = retExtra*aov/100000;
+  const gadsRec = Math.max(0, (6500*0.10*aov - gads)/100000);
+  const fixed = 4.2 + 1.9 + 0.4;
+
+  const total = rtoRec + retRec + gadsRec + fixed;
+  const proj = rev + total;
+  document.getElementById('r-total').textContent = '₹'+total.toFixed(1)+'L';
+  document.getElementById('r-proj').textContent = '₹'+proj.toFixed(1)+'L';
+  document.getElementById('r-pct').textContent = (proj/100).toFixed(0)+'%';
+}
+recalc();
+</script>
+</body>
+</html>
